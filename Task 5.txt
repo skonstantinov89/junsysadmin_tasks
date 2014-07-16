@@ -1,1 +1,1 @@
-vzcpucheck -v | sort -rs -k 2,2
+vzcpucheck -v | sort -rnk 2,2

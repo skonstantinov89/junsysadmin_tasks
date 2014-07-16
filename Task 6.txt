@@ -1,0 +1,2 @@
+tcpdump -i eth0 'port 80' -w Dumpfile
+tcpdump  -r Dumpfile | awk '{print $3}' | uniq -c | sort -rnk 1,1
