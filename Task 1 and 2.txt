@@ -1,0 +1,17 @@
+# Task 1
+netstat -n | grep :80| grep ESTABLISHED | awk '{print $3}'| cut -d: -f1 | uniq -c| sort -r | awk '{print $2}'
+
+#Task 2
+
+#!/bin/bash
+IPTables="/sbin/iptables"
+i=0
+for each in `netstat -n | grep :80 |grep ESTABLISHED | awk '{print $5}'| cut -d: -f1 | uniq -c | sort -rsn -k 1,1| awk '{print $2}'` 
+do
+  $IPTables -A INPUT -s $each -j LOG --log-prefix "Droped top 5 ip addresses"
+  $IPTables -A INPUT -s $each -j DROP
+  ((i++))
+  if [ $i = 5 ]; then break
+  fi
+done
+
