@@ -1,0 +1,1 @@
+mysqldump -u <UserName> -p <Password> db-name | ssh user@remote.box.com mysql -P=<OTHER_MACHINE_PORT> -u <UserName> -p <Password>  db-name
